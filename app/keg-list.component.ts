@@ -3,19 +3,23 @@ import { KegComponent } from './keg.component';
 import { Keg } from './keg.model';
 import { EditKegDetailsComponent } from './edit-keg-details.component';
 import { NewKegComponent } from './new-keg.component';
-// import { LowPipe } from './low.pipe';
+import { LowPipe } from './low.pipe';
 
 @Component({
   selector: 'keg-list',
   inputs: ['kegList'],
   outputs: ['onKegSelect'],
-  // pipes: [LowPipe],
+  pipes: [LowPipe],
   directives: [KegComponent, EditKegDetailsComponent, NewKegComponent],
   template: `
   <div class="row">
     <div class="col-md-3">
       <h1>Kegs</h1>
-      <keg-display *ngFor="#currentKeg of kegList"
+      <select (change)="onQuantityChange($event.target.value)" class="filter" class="col-sm-3 form-control input-lg">
+        <option value="all" selected="selected">Show All Kegs</option>
+        <option value="low">Show Low Kegs</option>
+      </select>
+      <keg-display *ngFor="#currentKeg of kegList | low:filterLow"
         (click)="kegClicked(currentKeg)"
         [class.selected]="currentKeg === selectedKeg"
         [keg]="currentKeg">
