@@ -6,7 +6,7 @@ import { Keg } from './keg.model';
   inputs: ['keg'],
   template:`
   <div>
-    <label>{{ keg.brand }} | {{ keg.name }}</label>
+    <button (click)="sellPint()"><i class="fa fa-beer" aria-hidden="true"></i></button><br><label><span class="mini">BREWERY:</span> {{ keg.brand }}<br><span class="mini">NAME:</span> {{ keg.name }}</label>
   </div>
   `
 })
