@@ -18,11 +18,15 @@ import { Keg } from './keg.model'
           <option value="6">6</option>
         </select>
       </div>
-      <input [(ngModel)]="keg.quantity" type="number" class="col-sm-8 input-lg"/>
+      <input [(ngModel)]="keg.quantity" type="number" max="124" class="col-sm-8 input-lg" id="kegsLeft"/><label for="kegsLeft">&nbsp;&nbsp;{{ pintsLeft() }}% pints left in keg</label>
     </div>
   `
 })
 
 export class EditKegDetailsComponent {
   public keg: Keg;
+
+  pintsLeft(){
+    return Math.floor(this.keg.quantity / 124 * 100);
+  }
 }

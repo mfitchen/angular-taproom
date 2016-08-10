@@ -17,4 +17,5 @@ export class KegComponent {
   sellPint() {
     this.keg.quantity -= 1;
   }
+
 }
